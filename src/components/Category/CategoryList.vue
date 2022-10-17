@@ -1,6 +1,7 @@
 <template>
-  <select class="categories">
-    <Category v-for="model of categories" v-bind:model="model" v-bind:key="model.id"/>
+  <select class="categories" v-on:change="changeCategory">
+    <option selected>Select category</option>
+    <Category v-for="category of categories" v-bind:model="category" v-bind:key="category.id"/>
   </select>
 </template>
 
@@ -24,10 +25,25 @@ export default {
     fetch('https://localhost:7040/api/Categories')
         .then(response=>response.json())
         .then(json=>this.categories=json);
+  },
+  methods: {
+    changeCategory(e)
+    {
+      const select = e.target;
+      this.$emit('categoryChanged', select.options[select.selectedIndex].value);
+    }
   }
 }
 </script>
 
 <style scoped>
-
+.categories
+{
+  border: 1px solid silver;
+  border-radius: 10px;
+  padding: 10px 15px;
+  appearance: none;
+  margin: auto;
+  outline: none;
+}
 </style>

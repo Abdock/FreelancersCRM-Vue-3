@@ -1,6 +1,6 @@
 <template>
-  <option class="category">
-    {{category.name}}
+  <option class="category" v-bind:value="model.id">
+    {{model.name}}
   </option>
 </template>
 
@@ -18,5 +18,18 @@ export default {
 </script>
 
 <style scoped>
+.category
+{
+  display: block;
+  height: 20px !important;
+  font-size: 1em;
+  font-family: "Verdana", "Lucida Sans Unicode", "sans-serif";
+  border: 1px solid silver;
+  background: white;
+}
 
+.category:checked
+{
+  background: silver;
+}
 </style>

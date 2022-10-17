@@ -1,7 +1,7 @@
 <template>
-  <option class="skill-opt">
+  <li class="skill-opt" v-on:click="selectSkill(model)">
     {{model.name}}
-  </option>
+  </li>
 </template>
 
 <script>
@@ -10,8 +10,21 @@ export default {
   name: "SkillOption",
   props: {
     model: {
-      id: String,
+      id:String,
       name: String
+    },
+  },
+  methods: {
+    selectSkill(skill)
+    {
+      for (const selectedSkill in this.selectedSkills)
+      {
+        if(selectedSkill.id===skill.id)
+        {
+          return;
+        }
+      }
+      this.$emit('selectSkill', skill);
     }
   }
 }
@@ -20,12 +33,14 @@ export default {
 <style scoped>
 .skill-opt
 {
-  display: inline-block;
   text-align: center;
   font-family: Verdana Arial sans-serif;
-  background: none;
-  padding: 10px 8px;
-  border-bottom: 1px solid black;
-
+  padding: 10px 15px;
+  border: 1px solid silver;
+  margin: 5px;
+  list-style-type: none;
+  border-radius: 10px;
+  max-width: 150px;
+  display: inline-block;
 }
 </style>

@@ -102,7 +102,6 @@ export default
   font-size: 1em;
   font-family: "Verdana", "sans-serif";
   text-align: left;
-
 }
 
 .service-info
